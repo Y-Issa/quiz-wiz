@@ -1,35 +1,32 @@
 import { useEffect, useState } from "react";
-function StartScreen({
-  numQuestions,
-  difficulty,
-  category,
-  dispatch,
-  questions,
-}) {
+function StartScreen({ numQuestions, difficulty, category, dispatch }) {
   const [fetchTrigger, setFetchTrigger] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "loader" });
-        const response = await fetch(
-          `https://the-trivia-api.com/v2/questions/?categories=${category}&difficulty=${difficulty}&limit=${numQuestions}`
-        );
-        const jsonData = await response.json();
-        dispatch({ type: "setQuestions", payload: jsonData });
-        console.log(jsonData);
-        dispatch({ type: "success" });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        dispatch({ type: "error" });
+  useEffect(
+    function () {
+      async function fetchData() {
+        try {
+          dispatch({ type: "loader" });
+          const response = await fetch(
+            `https://the-trivia-api.com/v2/questions/?categories=${category}&difficulties=${difficulty}&limit=${numQuestions}`
+          );
+          const jsonData = await response.json();
+          dispatch({ type: "setQuestions", payload: jsonData });
+          console.log(jsonData);
+          dispatch({ type: "success" });
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          dispatch({ type: "error" });
+        }
       }
-    };
 
-    if (fetchTrigger) {
-      fetchData();
-      setFetchTrigger(false);
-    }
-  }, [fetchTrigger, category, difficulty, numQuestions, dispatch]);
+      if (fetchTrigger) {
+        fetchData();
+        setFetchTrigger(false);
+      }
+    },
+    [fetchTrigger, category, difficulty, numQuestions, dispatch]
+  );
 
   const handleButtonClick = () => {
     setFetchTrigger(true);
@@ -92,14 +89,9 @@ function StartScreen({
           </select>
         </p>
       </div>
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: "loader" })}
-      >
-        Start!
-      </button>
+
       <button className="btn btn-ui" onClick={handleButtonClick}>
-        TEST!
+        Start!
       </button>
     </div>
   );
