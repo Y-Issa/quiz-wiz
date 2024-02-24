@@ -12,7 +12,6 @@ function StartScreen({ numQuestions, difficulty, category, dispatch }) {
           );
           const jsonData = await response.json();
           dispatch({ type: "setQuestions", payload: jsonData });
-          console.log(jsonData);
           dispatch({ type: "success" });
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -48,7 +47,7 @@ function StartScreen({ numQuestions, difficulty, category, dispatch }) {
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
-            <option value="">mixed</option>
+            <option value="easy,medium,hard">mixed</option>
           </select>
         </p>
         <p>

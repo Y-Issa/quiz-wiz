@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function QuestionScreen({ question, dispatch, userAnswer, points }) {
+function QuestionScreen({ question, dispatch, userAnswer }) {
   const hasAnswered = userAnswer !== null;
   const [answers, setAnswers] = useState([]);
 
@@ -22,8 +22,6 @@ function QuestionScreen({ question, dispatch, userAnswer, points }) {
     },
     [question]
   );
-
-  console.log(answers);
 
   return (
     <div>
