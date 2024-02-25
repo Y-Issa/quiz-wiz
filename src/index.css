@@ -37,7 +37,7 @@ body {
 }
 
 .main {
-  width: 85%;
+  width: 62rem;
 }
 
 .app-header {
@@ -88,6 +88,9 @@ h1 {
     font-size: 2rem;
   }
   .quiz-setup {
+    max-width: 90%;
+  }
+  .main {
     max-width: 90%;
   }
 }
