@@ -87,6 +87,9 @@ h1 {
   .start h2 {
     font-size: 2rem;
   }
+  .quiz-setup {
+    max-width: 90%;
+  }
 }
 
 h2 {
@@ -113,7 +116,7 @@ h4 {
 }
 
 .quiz-setup {
-  width: 90%;
+  width: 48rem;
 }
 
 .start p {
